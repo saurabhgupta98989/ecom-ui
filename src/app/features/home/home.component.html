@@ -30,7 +30,8 @@
         Popular Brands
     </h5>
     <div class="row text-center g-4">
-        <div class="col cursor-pointer" *ngFor="let b of ['Nike','Adidas','Zara','H&M','Forever21','levis']">
+        <div class="col cursor-pointer"
+            *ngFor="let b of ['Nike','Adidas','Zara','H&M','Forever21','levis','puma','reebok']">
             <div class="border rounded py-3 fw-semibold" (click)="navigateToProductsByBrand(b)">
                 {{b | titlecase }}
             </div>
@@ -43,7 +44,7 @@
         Popular categories
     </h5>
     <div class="row text-center g-4">
-        <div class="col cursor-pointer" *ngFor="let b of ['Jacket','tshirt','shirt','dress','shoes','hoodie']">
+        <div class="col cursor-pointer" *ngFor="let b of ['footwear','clothing','accessories']">
             <div class="border rounded py-3 fw-semibold" (click)="navigateToProductsByCategory(b)">
                 {{b | titlecase }}
             </div>
@@ -56,7 +57,7 @@
         Trending colors
     </h5>
     <div class="row text-center g-4">
-        <div class="col cursor-pointer" *ngFor="let b of ['black','blue','red','white','yellow','pink']">
+        <div class="col cursor-pointer" *ngFor="let b of ['black','blue','red','white','yellow','pink','grey']">
             <div class="border rounded py-3 fw-semibold" (click)="navigateToProductsByColor(b)">
                 {{b | titlecase }}
             </div>
