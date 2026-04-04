@@ -9,7 +9,7 @@ import { Params } from '@angular/router';
 })
 export class ProductService {
   // private api = 'http://localhost:8082';
-  private api = 'http://a2acac119c12a4affb74476dc45f8eeb-1507855302.ap-south-1.elb.amazonaws.com';
+  private api = 'http://a08c912a55cb94342b59f239d846f662-310872535.ap-south-1.elb.amazonaws.com';
 
   constructor(private http: HttpClient) {}
 
