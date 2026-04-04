@@ -53,8 +53,11 @@ export class AuthService {
   }
 
   async googleLogin() {
-    await signInWithRedirect({ provider: 'Google' });
-    await this.loadSession();
+    await signInWithRedirect({ provider: 'Google', options: { prompt: 'SELECT_ACCOUNT' } });
+  }
+
+  async googleSignup() {
+    await signInWithRedirect({ provider: 'Google', options: { prompt: 'CONSENT' } });
   }
 
   async getToken() {

@@ -75,6 +75,6 @@ export class SignupComponent {
   }
 
   public async google(): Promise<void> {
-    return this.auth.googleLogin();
+    return this.auth.googleSignup();
   }
 }
