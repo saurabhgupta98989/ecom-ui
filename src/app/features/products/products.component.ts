@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Product } from '../../core/models/product.model';
 import { ProductService } from './service/product.service';
 
@@ -20,6 +20,7 @@ export class ProductsComponent {
     private route: ActivatedRoute,
     private productService: ProductService,
     private cdr: ChangeDetectorRef,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -43,5 +44,9 @@ export class ProductsComponent {
         this.cdr.detectChanges();
       },
     });
+  }
+
+  navigateToProductDetail(productId: string) {
+    this.router.navigate(['/products', productId]);
   }
 }

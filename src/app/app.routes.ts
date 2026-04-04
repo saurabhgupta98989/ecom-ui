@@ -6,7 +6,8 @@ export const routes: Routes = [
   },
   {
     path: 'login',
-    loadComponent: () => import('./features/auth-pages/login/login.component').then((m) => m.LoginComponent),
+    loadComponent: () =>
+      import('./features/auth-pages/login/login.component').then((m) => m.LoginComponent),
   },
   {
     path: 'signup',
@@ -16,10 +17,20 @@ export const routes: Routes = [
   {
     path: 'verify',
     loadComponent: () =>
-      import('./features/auth-pages/verify-otp/verify-otp.component').then((m) => m.VerifyOtpComponent),
+      import('./features/auth-pages/verify-otp/verify-otp.component').then(
+        (m) => m.VerifyOtpComponent,
+      ),
   },
   {
     path: 'products',
-    loadComponent: () => import('./features/products/products.component').then((m) => m.ProductsComponent),
+    loadComponent: () =>
+      import('./features/products/products.component').then((m) => m.ProductsComponent),
+  },
+  {
+    path: 'products/:productId',
+    loadComponent: () =>
+      import('./features/product-detail/product-detail.component').then(
+        (m) => m.ProductDetailComponent,
+      ),
   },
 ];

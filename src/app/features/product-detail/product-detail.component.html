@@ -1,0 +1,81 @@
+<div class="container my-4" *ngIf="product as p">
+    <div class="row">
+
+        <!-- Left Section: Images -->
+        <div class="col-md-6">
+            <div class="card border-0">
+                <img class="img-fluid rounded" [src]="selectedImage?.url || p.images[0]?.url" alt="Product Image" />
+            </div>
+
+            <!-- Thumbnails -->
+            <div class="d-flex mt-3 gap-2 flex-wrap">
+                <img *ngFor="let img of p.images" [src]="img.url" class="img-thumbnail"
+                    [class.border-dark]="img.url === selectedImage?.url" style="width: 70px; cursor: pointer;"
+                    (click)="selectImage(img)" />
+            </div>
+        </div>
+
+        <!-- Right Section: Details -->
+        <div class="col-md-6">
+
+            <h3 class="fw-bold">{{ p.name }}</h3>
+            <p class="text-muted mb-1">Brand: {{ p.brand }}</p>
+
+            <!-- Price -->
+            <div class="mb-3">
+                <span class="text-muted text-decoration-line-through me-2" *ngIf="p.price.discountPrice">
+                    ₹{{ p.price.amount }}
+                </span>
+                <span class="fs-4 fw-bold text-success">
+                    ₹{{ p.price.discountPrice || p.price.amount }}
+                </span>
+            </div>
+
+            <!-- Description -->
+            <p>{{ p.description }}</p>
+
+            <!-- Tags -->
+            <div class="mb-3">
+                <span *ngFor="let tag of p.tags" class="badge bg-secondary me-1">
+                    {{ tag }}
+                </span>
+            </div>
+
+            <!-- Colors -->
+            <div class="mb-3">
+                <label class="fw-semibold me-2">Colors:</label>
+                <span *ngFor="let color of p.colors" class="badge bg-light text-dark border me-1">
+                    {{ color }}
+                </span>
+            </div>
+
+            <!-- Sizes -->
+            <div class="mb-3">
+                <label class="fw-semibold d-block mb-1">Sizes:</label>
+                <button *ngFor="let size of p.sizes" class="btn btn-outline-dark me-2 mb-2"
+                    [class.active]="size === selectedSize" [disabled]="!p.inventory.stockBySize[size]"
+                    (click)="selectSize(size)">
+                    {{ size }}
+                </button>
+            </div>
+
+            <!-- Stock -->
+            <div class="mb-3">
+                <span class="badge" [ngClass]="p.inventory.inStock ? 'bg-success' : 'bg-danger'">
+                    {{ p.inventory.inStock ? 'In Stock' : 'Out of Stock' }}
+                </span>
+            </div>
+
+            <!-- Actions -->
+            <div class="d-flex gap-2">
+                <button class="btn btn-primary" [disabled]="!selectedSize || !p.inventory.inStock">
+                    Add to Cart
+                </button>
+                <button class="btn btn-outline-secondary">
+                    Buy Now
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>
