@@ -1,0 +1,82 @@
+name: Build and Push Angular Docker Image
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # ✅ Checkout
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # ✅ Setup Node
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # ✅ Install deps
+      - name: Install Dependencies
+        run: npm ci
+
+      # ✅ Build Angular app
+      - name: Build Angular App
+        run: npm run build
+
+      # ✅ Get version from package.json
+      - name: Get version
+        run: echo "VERSION=$(node -p "require('./package.json').version")" >> $GITHUB_ENV
+
+      # ✅ Login DockerHub
+      - name: Login to DockerHub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      # ✅ Build Docker image (version + latest)
+      - name: Build Docker Image
+        run: |
+          echo "Building version: $VERSION"
+          docker build \
+            -t ${{ secrets.DOCKERHUB_USERNAME }}/ecom-ui:$VERSION \
+            -t ${{ secrets.DOCKERHUB_USERNAME }}/ecom-ui:latest \
+            .
+
+      # ✅ Push images
+      - name: Push Docker Images
+        run: |
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/ecom-ui:$VERSION
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/ecom-ui:latest
+
+      # ✅ Clone Helm repo
+      - name: Clone Helm Repo
+        run: |
+          git clone https://${{ secrets.HELM_REPO_TOKEN }}@github.com/saurabhgupta98989/ecom-helm-chart.git
+          cd ecom-helm-chart
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+
+      # ✅ Install yq
+      - name: Install yq
+        run: sudo snap install yq
+
+      # ✅ Update UI image tag
+      - name: Update Helm values.yaml
+        run: |
+          cd ecom-helm-chart
+          echo "Updating UI image tag to $VERSION"
+          yq -i '.ecom-ui.image.tag = strenv(VERSION)' values.yaml
+
+      # ✅ Commit & push
+      - name: Commit and Push changes
+        run: |
+          cd ecom-helm-chart
+          git add values.yaml
+          git commit -m "Update ecom-ui image tag to $VERSION" || echo "No changes to commit"
+          git push
