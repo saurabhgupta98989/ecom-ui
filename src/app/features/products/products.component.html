@@ -26,22 +26,34 @@
                 <!-- Details -->
                 <div class="col-md-6 p-3">
                     <span class="text-dark fw-semibold">
-                        {{ p.brand | titlecase }}
+                        Brand: {{ p.brand | titlecase }} | Category: {{ p.category }}
                     </span>
                     <h5 class="fw-semibold mb-1">
                         {{ p.name }}
                     </h5>
 
                     <p class="text-muted small mb-2">
-                        {{ p.description }}
+                        Description: {{ p.description }}
                     </p>
 
                     <div class="d-flex gap-3 small">
+                        Tags:
                         <span class="badge bg-light text-dark border" *ngFor="let tag of p.tags || []">
                             {{ tag }}
                         </span>
                     </div>
-                    <button class="btn btn-primary mt-2 ms-1" *ngFor="let size of p.availableSizes || []">{{size}}</button>
+                    <div class="d-flex gap-3 small">
+                        Colors:
+                        <span class="text-dark" *ngFor="let color of p.colors || []">
+                            {{ color }}
+                        </span>
+                    </div>
+
+                    <div>
+                        Sizes:
+                        <button class="btn btn-primary mt-2 ms-1"
+                            *ngFor="let size of p.availableSizes || []">{{size}}</button>
+                    </div>
 
                 </div>
 
