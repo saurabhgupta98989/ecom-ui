@@ -1,0 +1,29 @@
+.login-card {
+  width: 380px;
+  padding: 30px;
+  border-radius: 16px;
+}
+
+.divider {
+  text-align: center;
+  position: relative;
+  font-size: 13px;
+  color: #777;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 40%;
+  height: 1px;
+  background: #ddd;
+}
+
+.divider::before {
+  left: 0;
+}
+.divider::after {
+  right: 0;
+}

@@ -1,0 +1,72 @@
+<div class="container d-flex justify-content-center align-items-center vh-100">
+
+    <mat-card class="signup-card shadow">
+
+        <h2 class="text-center fw-bold mb-4">Create Account</h2>
+
+        <form (ngSubmit)="signup()" class="d-flex flex-column gap-3" [formGroup]="form">
+
+            <mat-form-field appearance="outline">
+                <mat-label>First Name</mat-label>
+                <input matInput formControlName="firstName">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Last Name</mat-label>
+                <input matInput formControlName="lastName">
+            </mat-form-field>
+
+            <!-- EMAIL -->
+            <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email">
+            </mat-form-field>
+
+            <!-- PASSWORD -->
+            <mat-form-field appearance="outline">
+                <mat-label>Password</mat-label>
+                <input matInput type="password" formControlName="password">
+            </mat-form-field>
+
+            <!-- CONFIRM PASSWORD -->
+            <mat-form-field appearance="outline">
+                <mat-label>Confirm Password</mat-label>
+                <input matInput type="password" formControlName="confirmPassword">
+            </mat-form-field>
+
+            <!-- ERROR -->
+            <div *ngIf="form.errors?.['mismatch']" class="text-danger small text-center">
+                Passwords do not match
+            </div>
+
+            <div *ngIf="error" class="text-danger small text-center">
+                {{error}}
+            </div>
+
+            <!-- SUBMIT -->
+            <button mat-raised-button color="primary" type="submit" [disabled]="loading">
+                {{ loading ? 'Creating account...' : 'Sign Up' }}
+            </button>
+
+        </form>
+
+        <!-- Divider -->
+        <div class="divider my-3">OR</div>
+
+        <!-- GOOGLE SIGNUP -->
+        <button class="btn btn-outline-dark w-100 d-flex align-items-center justify-content-center gap-2"
+            (click)="google()">
+
+            <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" width="18">
+
+            Sign up with Google
+        </button>
+
+        <!-- LOGIN LINK -->
+        <div class="text-center mt-4">
+            <span class="text-muted">Already have an account?</span>
+            <a routerLink="/login" class="fw-semibold ms-1">Login</a>
+        </div>
+
+    </mat-card>
+</div>

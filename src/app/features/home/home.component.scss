@@ -1,0 +1,31 @@
+.hero {
+  background: #f8f9fa;
+}
+
+.category-card {
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.category-card:hover {
+  transform: translateY(-6px);
+}
+
+.product-card {
+  transition: 0.2s;
+}
+
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.promo {
+  background: #111;
+  color: #fff;
+  font-weight: 500;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}

@@ -1,0 +1,71 @@
+<div class="container mt-4">
+
+    <!-- Loader -->
+    <div class="d-flex flex-column align-items-center justify-content-center py-5" *ngIf="loading">
+        <mat-spinner diameter="55"></mat-spinner>
+        <p class="text-muted mt-3">Loading products...</p>
+    </div>
+
+    <!-- Empty -->
+    <div *ngIf="!loading && products.length === 0" class="text-center text-muted py-5">
+        <h5>No products found</h5>
+    </div>
+
+    <!-- Product List -->
+    <div *ngIf="!loading && products.length">
+
+        <div class="card mb-3 shadow-sm border-0" *ngFor="let p of products">
+
+            <div class="row g-0 align-items-center">
+
+                <!-- Image -->
+                <div class="col-md-3 text-center p-3">
+                    <img [src]="p.images[0].url" class="img-fluid rounded" />
+                </div>
+
+                <!-- Details -->
+                <div class="col-md-6 p-3">
+                    <span class="text-dark fw-semibold">
+                        {{ p.brand | titlecase }}
+                    </span>
+                    <h5 class="fw-semibold mb-1">
+                        {{ p.name }}
+                    </h5>
+
+                    <p class="text-muted small mb-2">
+                        {{ p.description }}
+                    </p>
+
+                    <div class="d-flex gap-3 small">
+                        <span class="badge bg-light text-dark border" *ngFor="let tag of p.tags || []">
+                            {{ tag }}
+                        </span>
+                    </div>
+                    <button class="btn btn-primary mt-2 ms-1" *ngFor="let size of p.availableSizes || []">{{size}}</button>
+
+                </div>
+
+                <!-- Price / Rating -->
+                <div class="col-md-3 text-md-end p-3">
+
+                    <div class="fs-4 fw-bold text-success">
+                        ₹ {{ p.price }}
+                    </div>
+
+                    <div class="text-warning small">
+                        ⭐ {{ p.rating }}
+                    </div>
+
+                    <button class="btn btn-primary btn-sm mt-3">
+                        View Product
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

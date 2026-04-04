@@ -1,0 +1,49 @@
+<div class="container vh-100 d-flex justify-content-center align-items-center">
+
+    <div class="verify-card shadow">
+
+        <h3 class="text-center mb-3 fw-bold">
+            Verify Your Email
+        </h3>
+
+        <p class="text-center text-muted small mb-4">
+            Enter the code sent to <b>{{email}}</b>
+        </p>
+
+        <form (ngSubmit)="verify()" class="d-flex flex-column gap-3" [formGroup]="form">
+
+            <!-- OTP INPUT -->
+            <input class="form-control text-center otp-input" maxlength="6" placeholder="Enter OTP" formControlName="code">
+
+            <!-- ERROR -->
+            <div *ngIf="error()" class="text-danger text-center small">
+                {{ error() }}
+            </div>
+
+            <!-- VERIFY BUTTON -->
+            <button class="btn btn-primary w-100" [disabled]="loading()">
+                {{ loading() ? 'Verifying...' : 'Verify Account' }}
+            </button>
+
+        </form>
+
+        <!-- RESEND -->
+        <div class="text-center mt-4 small">
+
+            <span class="text-muted">Didn't receive code?</span>
+
+            <button class="btn btn-link p-0 ms-1" (click)="resend()" [disabled]="countdown()>0">
+
+                Resend
+
+            </button>
+
+            <div *ngIf="countdown()>0" class="text-muted mt-1">
+                Resend in {{countdown()}}s
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

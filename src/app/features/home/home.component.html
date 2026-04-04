@@ -1,0 +1,74 @@
+<section class="bg-secondary text-white text-center py-5">
+    <div class="container">
+        <h1 class="fw-bold display-5">
+            New Season Collection
+        </h1>
+        <p class="lead text-light">
+            Trendy styles for every occasion
+        </p>
+    </div>
+</section>
+
+<section class="container py-5">
+    <!-- <h3 class="fw-semibold mb-4">Shop by Category</h3> -->
+    <div class="row g-4 text-center">
+        <div class="col-md-4" *ngFor="let c of categories">
+            <div class="card h-100 border-0 shadow-sm cursor-pointer" (click)="navigateToProductsByAudience(c.name)">
+                <img [src]="c.image" class="card-img-top">
+                <div class="card-body">
+                    <h6 class="fw-semibold mb-0">
+                        {{c.name}}
+                    </h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container py-5">
+    <h5 class="fw-semibold mb-4 text-center">
+        Popular Brands
+    </h5>
+    <div class="row text-center g-4">
+        <div class="col cursor-pointer" *ngFor="let b of ['Nike','Adidas','Zara','H&M','Forever21','levis']">
+            <div class="border rounded py-3 fw-semibold" (click)="navigateToProductsByBrand(b)">
+                {{b | titlecase }}
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container py-5">
+    <h5 class="fw-semibold mb-4 text-center">
+        Popular categories
+    </h5>
+    <div class="row text-center g-4">
+        <div class="col cursor-pointer" *ngFor="let b of ['Jacket','tshirt','shirt','dress','shoes','hoodie']">
+            <div class="border rounded py-3 fw-semibold" (click)="navigateToProductsByCategory(b)">
+                {{b | titlecase }}
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container py-5">
+    <h5 class="fw-semibold mb-4 text-center">
+        Trending colors
+    </h5>
+    <div class="row text-center g-4">
+        <div class="col cursor-pointer" *ngFor="let b of ['black','blue','red','white','yellow','pink']">
+            <div class="border rounded py-3 fw-semibold" (click)="navigateToProductsByColor(b)">
+                {{b | titlecase }}
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="bg-danger text-white text-center py-4">
+    <h4 class="mb-1 fw-bold">
+        Flat 40% OFF
+    </h4>
+    <p class="mb-0">
+        On Winter Collection
+    </p>
+</section>

@@ -1,0 +1,31 @@
+.search-wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  input {
+    color: white;
+  }
+}
+
+.search-field {
+  width: 100%;
+  max-width: 450px;
+}
+
+mat-form-field {
+  --mdc-outlined-text-field-outline-color: white;
+}
+
+mat-icon {
+  color: white;
+}
+
+:host {
+  ::ng-deep {
+    .search-field.mat-focused .mdc-notched-outline__leading,
+    .search-field.mat-focused .mdc-notched-outline__notch,
+    .search-field.mat-focused .mdc-notched-outline__trailing {
+      border-color: gray !important;
+    }
+  }
+}
