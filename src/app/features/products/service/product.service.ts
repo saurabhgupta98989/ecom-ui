@@ -8,12 +8,12 @@ import { Params } from '@angular/router';
   providedIn: 'root',
 })
 export class ProductService {
-  private product_search_service = 'http://localhost:8082';
-  private product_service = 'http://localhost:8081';
-  // private product_search_service =
-  //   'http://a08c912a55cb94342b59f239d846f662-310872535.ap-south-1.elb.amazonaws.com';
-  // private product_service =
-  //   'http://a08c912a55cb94342b59f239d846f662-310872535.ap-south-1.elb.amazonaws.com';
+  // private product_search_service = 'http://localhost:8082';
+  // private product_service = 'http://localhost:8081';
+  private product_search_service =
+    'http://k8s-ecom-ecomappi-6704779a40-685324248.ap-south-1.elb.amazonaws.com/product-service';
+  private product_service =
+    'http://k8s-ecom-ecomappi-6704779a40-685324248.ap-south-1.elb.amazonaws.com/search-service';
 
   constructor(private http: HttpClient) {}
 
