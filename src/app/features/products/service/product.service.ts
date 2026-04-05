@@ -11,9 +11,9 @@ export class ProductService {
   // private product_search_service = 'http://localhost:8082';
   // private product_service = 'http://localhost:8081';
   private product_search_service =
-    'http://k8s-ecom-ecomappi-6704779a40-685324248.ap-south-1.elb.amazonaws.com/product-service';
-  private product_service =
     'http://k8s-ecom-ecomappi-6704779a40-685324248.ap-south-1.elb.amazonaws.com/search-service';
+  private product_service =
+    'http://k8s-ecom-ecomappi-6704779a40-685324248.ap-south-1.elb.amazonaws.com/product-service';
 
   constructor(private http: HttpClient) {}
 
