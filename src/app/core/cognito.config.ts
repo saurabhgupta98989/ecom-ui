@@ -9,8 +9,8 @@ export const cognitoConfig: ResourcesConfig = {
         oauth: {
           domain: 'ap-south-1pwt4mjt7o.auth.ap-south-1.amazoncognito.com',
           scopes: ['openid', 'email', 'profile'],
-          redirectSignIn: ['http://localhost:4200/'],
-          redirectSignOut: ['http://localhost:4200/'],
+          redirectSignIn: [`${window.location.origin}/`],
+          redirectSignOut: [`${window.location.origin}/`],
           responseType: 'code',
         },
       },
